@@ -1,0 +1,134 @@
+
+.therightstuff {
+	height: 31px;
+}
+
+.therightstuff a {
+	margin-top: -4px;
+	padding-bottom: 0;
+}
+
+#menucontainer{
+	font-size: 1px; 
+}
+
+#nav{
+	font-size: 9pt;
+}
+
+#nav li.willopen, #nav li.willnotopen, #nav li.stayopen, #nav li.clickhover {
+	margin-bottom: -4px;
+}
+
+#nav li.willopen a, #nav li.willnotopen a, #nav li.stayopen a, #nav li.clickhover a{
+	margin-bottom: -4px;
+	padding-top: 0;
+}
+
+#nav li.willopen ul li, #nav li.willnotopen  ul li, #nav li.stayopen  ul li, #nav li.clickhover  ul li{
+	margin-bottom: 0px;
+}
+
+#nav li.stayopen ul li a, #nav li.clickhover ul li a, #nav li.willnotopen ul li a, #nav li.willnotopen ul li a{
+	margin-bottom: 0px;
+	padding-top: 0;
+}
+
+.menuzoom{
+	font-size: 9pt;
+	padding-bottom: 2px;
+}
+
+.headerbutton, .headerbuttonreset{
+	font-size: 9pt;
+}
+
+
+#nav li{
+	padding-top: 0; 
+	margin-bottom: -2px;
+}
+
+#nav li a{
+	padding-bottom: 0;
+	margin-bottom: -2px;
+}
+
+#nav li li{
+	padding-top: 0; /* remove inheritance */
+}
+
+
+
+.menuzoom{
+	padding: 0;
+	margin: 0;
+}
+
+
+.headermenurow{
+
+	margin: 0;
+	padding: 0;
+	height: 21px;
+}
+
+
+
+/* buttons bigger and default, needs adjusting.... */
+.div_headertextinput{
+	/*width: 264px;*/
+	width: 239px;
+}
+
+.headertextinput {
+	padding-top: 0;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 2px;
+}
+
+.headerselect {
+	padding-top: 0;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+}
+
+.headertextinput{
+	/*width: 260px;*/
+	width: 235px;
+}
+
+.div_headerbutton{
+	width: 32px;
+}
+
+.headerbutton{
+	width: 30px;
+	height: 23px;
+}
+
+.div_cancel_button{
+	width: 37px;
+}
+.headerbuttonreset{
+	width: 47px;
+}
+/* buttons bigger and default, needs adjusting.... */
+
+
+.therightstuff{
+	left: 671px; 
+}
+
+.therighticons{
+	left: 661px; 
+}
+
+
+
+
+
+
+

@@ -1,0 +1,195 @@
+/* 
+
+CUSTOM styling for EBI homepage + searchbox
+Francis Rowland // EMBL-EBI External Services
+15/11/2010 
+
+*/
+
+html { overflow-y: scroll; }
+
+div#main_news {
+	padding-top: 0;		/* Remove padding from the top of the main conten <div> */
+}
+
+div#search_ebi {
+	width: 610px;
+	height:160px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+
+div#search_ebi form {
+	background: #dedede;
+	border:4px solid #ccc;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 10px;
+	overflow: auto;
+}
+
+form div#searching {
+	/*width:485px;
+	float:left;*/
+}
+
+div#search_ebi form fieldset {
+	border: 0 none;
+}
+
+div#search_ebi form fieldset legend {
+	font-size: 14px; /* would be better to use relative values, such as EMs */
+	color: #333;
+}
+
+
+div#search_ebi form input#query {
+	width: 88%;
+	font-size: 16px; /* would be better to use relative values, such as EMs */
+	margin: 5px 0;
+}
+
+div#search_ebi form input#query:focus {
+	background-color:#FEFBDF;
+}
+
+div#search_ebi form input#search_submit {
+	float: right;
+	background-color:#72B55F;
+	border:1px solid #0a4f4f;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 14px;
+	padding: 4px 2px;
+	margin-top:4px;
+}
+
+div#search_ebi form input#search_submit:hover {
+	background: #54bdbd;
+	cursor: pointer;
+}
+
+
+p#example {color: #656565;}
+	 
+
+
+/* A non-semantic padding <div>... apologies */
+div#pad {height: 50px;}
+
+
+div#context_buttons { width: 620px; }
+
+div#context_buttons ul {
+	list-style:none;
+	float:left;
+	padding:0;
+	margin:0;
+}
+
+div#context_buttons li {float:left; margin:0; border-top:1px solid #777;}
+
+div#context_buttons li#help {
+	margin:0 10px;
+}
+
+div#context_buttons li#feedback {margin-right:10px;}
+
+div#context_buttons li a,
+div#context_buttons li a:link,
+div#context_buttons li a:visited {
+	float:left;
+	padding:4px 8px 3px 8px;
+	background-color:#FC3;
+	border-top:1px solid #BFA34C;
+	border-right:1px solid #BFA34C;
+	border-bottom:1px solid #BFA34C;
+	border-left:1px solid #BFA34C;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-khtml-border-radius-bottomleft: 5px;
+	-khtml-border-radius-bottomright: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	text-decoration:none;
+	color:#0D426B;
+}
+
+div#context_buttons li a:hover,
+div#context_buttons li a:focus,
+div#context_buttons li a:active {
+	padding-top:7px;
+	background-color:#ffd966;
+	color:#000;
+}
+
+/* Further customisations - March 2011, Francis Rowland. 
+   See RT ticket #8429 */
+body.v3 ul.homepage_events {list-style:none; padding-left:2px;}
+
+body.v3 ul.homepage_events li {
+	padding-bottom:4px;
+	border-bottom:1px dotted #ccc;
+	margin-bottom: 5px;	
+}
+
+body.v3 ul.homepage_events li span.details {
+	color:#666;
+	font-weight:bold;
+}
+
+
+body.v3 span.date {
+	font-style:italic;
+	font-size:inherit;
+	color:inherit;
+}
+
+/* Temporary overrides for homepage_content.css rules... */
+body.v3 h2 {
+	font-size: 18px;
+	margin:15px 0;
+}
+
+body.v3 .contents h2 a {
+	text-decoration:none;
+}
+
+body.v3 .contents h2 a:link,
+body.v3 .contents h2 a:visited {
+	color:#222;	
+}
+
+body.v3 .contents h2 a:hover,
+body.v3 .contents h2 a:focus,
+body.v3 .contents h2 a:active {
+	color:#e33e3e;	
+}
+
+table#homepage_dandt_table {
+	padding: 0; 	 
+	margin-left: 3px;
+	border-collapse: collapse; 
+	width:700px;	
+}
+
+table#homepage_dandt_table td {vertical-align:top;}
+
+table#homepage_dandt_table ul { 
+	margin:0 0 0 8px;
+	padding: 5px;
+	list-style:square;
+	color: #ccc;
+}
+
+table#homepage_dandt_table ul li {
+		
+}

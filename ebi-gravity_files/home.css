@@ -1,0 +1,92 @@
+
+/* 74 less */
+
+.headertextinput {
+	width: 181px;
+}
+
+.div_headertextinput {
+	width: 185px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.header{
+	height: 120px;
+}
+
+.headerdiv{
+	height: 120px;
+}
+
+.headerright{
+	height: 105px;
+}
+
+.headerleft{
+	width:200px;
+	height:100px;
+	background:  url(https://www.ebi.ac.uk/inc/images/ebilogohome.gif) no-repeat top left;
+}
+
+
+.div_searchtext{
+	position: relative;
+	padding:0px;
+	margin-bottom:0px; 
+	margin-right:0px; 
+	margin-left:0px;
+	height:20px;
+	width: 50px;
+	background:  url(https://www.ebi.ac.uk/inc/images/header_search_revised.gif) no-repeat top left;
+	float: left;
+	margin-top: 2px;
+}
+
+
+.headerleft img{
+	width:0;
+	height:0;
+}
+
+.banner_left{
+	visibility: hidden;
+}
+
+.headermenurow{
+	top: 100px;
+}
+
+.search{
+	margin-left: 70px;
+	margin-top: 38px;
+} 
+
+
+.therighticons{
+	top: 102px;
+}
+
+.therightstuff{
+	left: 649px;
+	margin-top: 73px;
+	width: 100px; 
+	top: -10px;
+	text-align: right;
+}
+
+.contentsarea{
+	
+}
