@@ -1,9 +1,3 @@
-## Experiments
+## GH pages hosting the experiements
 
-Projects with all the experiments I've been doing on the way
-
-### EBI Gravity
-
-The experiment: http://samuelcroset.com/experiments/ebi-gravity.html
-
-Apply some gravity to the EBI website. Useless but fun. Based on that library: https://github.com/franzenzenhofer/box2d-jquery
+How to expose a new experiment: Create a folder and put an `index.html` file in it.
