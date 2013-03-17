@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Brain by loopasam</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Brain</h1>
+          <h2>Biomedical knowledge manipulation</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+        <a href="https://github.com/loopasam/Brain/wiki" id="documentation" class="button"><span>Documentation</span></a>
+          <a href="https://github.com/loopasam/Brain/raw/gh-pages/jar/Brain-1.4.1-jar-with-dependencies.jar" id="download-jar" class="button"><span>Brain-1.4.1.jar</span></a>
+          <a href="https://github.com/loopasam/Brain" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+
+
+
+<h3>Summary</h3>
+<p>
+Brain helps you to quickly and easily buid OWL ontologies and knowledge bases. It aims at bridging the gap
+ between graphical user interfaces (GUI) such as <a href="http://protege.stanford.edu/">Protege</a> and the 
+ <a href="http://owlapi.sourceforge.net/">OWL-API</a>.
+</p>
+<p>
+The library is
+useful to develop Semantic Web applications and particularly suited for the biomedical domain.
+Brain wraps the interaction with the OWL-API an relies on <a href="https://code.google.com/p/elk-reasoner/">Elk</a>
+for reasoning tasks.
+ </p>
+
+<h3>Features</h3>
+
+<h4>Manchester syntax support</h4>
+<p>
+The interaction with Brain is done with the user friendly Manchester syntax.
+Brain exposes a series of method to help you validate and transform strings of
+characters into OWL expressions.
+</p>
+<hr>
+<h4>Web Application development</h4>
+<p>
+Brain has been created for Semantic Web application developers. The library is thread-safe
+which allows you to handle ontologies in a web server setting.
+</p>
+<hr>
+<h4>Scalability</h4>
+<p>
+OWL is a very demanding in terms of computing, but thanks to the 
+<a href="https://github.com/loopasam/Brain/wiki/OWL-2-EL">OWL 2 EL</a> profile, it is possible to
+thread reasoning some tasks in parallel (Elk reasoner). Brain therefore supports the OWL 2 EL to help you
+build scalable solutions.
+</p>
+<hr>
+<h4>Query</h4>
+<p>
+OWL knowledge bases can be easily queried with Brain. Powerful
+questions can be quickly answered with the help of the Elk reasoner.
+Brain accepts the formulation of queries from labels as well as from class
+expressions.
+</p>
+<hr>
+
+<h3>Example of axiom</h3>
+
+<p>Natural language: <code>A nucleus is part of some cells.</code></p>
+<p>Description logic: <code>Nucleus ⊆ ∃part-of.Cell</code></p>
+<p>OWL (Manchester syntax): <code>Nucleus subClassOf part-of some Cell</code></p>
+
+<h3>Brain implementation</h3>
+<pre><code>public static void main(String[] args) throws BrainException {
+  //You will always need a Brain object
+  Brain brain = new Brain();
+  //Add the OWL classes
+  brain.addClass("Nucleus");
+  brain.addClass("Cell");
+  //Add the OWL object property
+  brain.addObjectProperty("part-of");
+  //Declare the axiom
+  brain.subClassOf("Nucleus", "part-of some Cell");
+  //Query the knowledge-base for indirect subclasses of an expression
+  List&lt;String&gt; subClasses = brain.getSubClasses("part-of some Cell", false);
+  //Free the resources used by the reasoner
+  brain.sleep();
+  //Save the ontology
+  brain.save("your/path/to/ontology.owl");
+}
+</code></pre>
+
+<h3>Serialised OWL file (Manchester syntax)</h3>
+<pre><code>Prefix: xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+Prefix: owl: &lt;http://www.w3.org/2002/07/owl#&gt;
+Prefix: : &lt;brain#&gt;
+Prefix: xml: &lt;http://www.w3.org/XML/1998/namespace&gt;
+Prefix: rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+Prefix: rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+Ontology: &lt;brain.owl&gt;
+
+ObjectProperty: part-of
+
+Class: owl:Thing
+    
+Class: Cell
+
+Class: Nucleus
+
+    SubClassOf: 
+        part-of some Cell
+</code></pre>
+
+<h3>Serialised RDF file (Turtle)</h3>
+<pre><code>@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix : &lt;brain#&gt; .
+@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@base &lt;brain.owl&gt; .
+
+&lt;brain.owl&gt; rdf:type owl:Ontology .
+
+:part-of rdf:type owl:ObjectProperty .
+
+:Cell rdf:type owl:Class .
+
+:Nucleus rdf:type owl:Class ;
+         
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :part-of ;
+                           owl:someValuesFrom :Cell
+                         ] .
+
+owl:Thing rdf:type owl:Class .
+</code></pre>
+</div>
+</section>
+
+<div class="table-summary">
+<h3>Translation between Description Logic and OWL</h3>
+
+<table>
+    <tr>
+       <th></th>
+        <th class="top-header">Description Logic (DL) Syntax</th>
+        <th class="top-header">OWL Functional-Style Syntax</th>
+        <th class="top-header">OWL Manchester Syntax</th>
+        <th class="top-header">Example of Brain Implementation</th>
+    </tr>
+    <th colspan="5">Individuals</th>
+    </tr>
+        <tr>
+        <td>individual name</td>
+        <td>a</td>
+        <td>Declaration(NamedIndividual(a))</td>
+        <td>Individual:&nbsp;a</td>
+        <td>Not supported (To be implemented in a future version)</td>
+    </tr>
+    <tr>
+    <th colspan="5">Roles</th>
+    </tr>
+    <tr>
+        <td>atomic role</td>
+        <td>R</td>
+        <td>Declaration(ObjectProperty(P))</td>
+        <td>ObjectProperty:&nbsp;P</td>
+        <td>brain.addObjectProperty("P");</td>
+    </tr>
+     <tr>
+    <th colspan="5">Concepts</th>
+    </tr>
+    <tr>
+        <td>atomic concept</td>
+        <td>A</td>
+        <td>Declaration(Class(A))</td>
+        <td>Class:&nbsp;A</td>
+        <td>brain.addClass("A");</td>
+    </tr>
+    <tr>
+        <td>intersection</td>
+        <td>C⊓D</td>
+        <td>ObjectIntersectionOf(C&nbsp;D)</td>
+        <td>C&nbsp;and&nbsp;D</td>
+        <td>brain.equivalentClasses("A",&nbsp;"C&nbsp;and&nbsp;D");</td>
+    </tr>
+     <tr>
+        <td>top concept</td>
+        <td>⊤</td>
+        <td>owl:Thing</td>
+        <td>owl:Thing</td>
+        <td>brain.getOWLClass("Thing");</td>
+    </tr>
+     <tr>
+        <td>top concept</td>
+        <td>⊥</td>
+        <td>owl:Nothing</td>
+        <td>owl:Nothing</td>
+        <td>brain.getUnsatisfiableClasses();</td>
+    </tr>
+     <tr>
+        <td>existential restriction</td>
+        <td>∃R.C</td>
+        <td>ObjectSomeValuesFrom(P C)</td>
+        <td>P&nbsp;some&nbsp;C</td>
+        <td>brain.subClassOf("X", "P some C");</td>
+    </tr>
+    <tr>
+        <td>union</td>
+        <td>C⊔D</td>
+        <td>ObjectUnionOf(C&nbsp;D)</td>
+        <td>C&nbsp;or&nbsp;D</td>
+        <td>Not supported (Not in EL profile)</td>
+    </tr>
+      <tr>
+        <td>complement</td>
+        <td>¬C</td>
+        <td>ObjectComplementOf(C)</td>
+        <td>not&nbsp;C</td>
+        <td>Not supported (Not in EL profile)</td>
+    </tr>
+     <tr>
+        <td>universal restriction</td>
+        <td>∀R.C</td>
+        <td>ObjectAllValuesFrom(P C)</td>
+        <td>P&nbsp;only&nbsp;C</td>
+        <td>Not supported (Not in EL profile)</td>
+    </tr>
+    <tr>
+    <th colspan="5">Axioms</th>
+    </tr>
+    <tr>
+    <th colspan="5">ABox (assertional axioms)</th>
+    </tr>
+     <tr>
+        <td>concept assertion</td>
+        <td>C(a)</td>
+        <td>ClassAssertion(C a)</td>
+        <td>Individual:&nbsp;a<br />Types:&nbsp;C</td>
+        <td>Not supported (To be implemented in a future version)</td>
+    </tr>
+     <tr>
+        <td>role assertion</td>
+        <td>R(a, b)</td>
+        <td>ObjectPropertyAssertion(P&nbsp;a&nbsp;b)</td>
+        <td>Individual:&nbsp;a<br />Facts:&nbsp;R&nbsp;b</td>
+        <td>Not supported (To be implemented in a future version)</td>
+    </tr>
+     <tr>
+        <td>individual equality</td>
+        <td>a≈b</td>
+        <td>SameIndividual(a b)</td>
+        <td>Individual:&nbsp;a<br />SameAs:&nbsp;b</td>
+        <td>Not supported (To be implemented in a future version)</td>
+    </tr>
+     <tr>
+        <td>individual inequality</td>
+        <td>a≠b</td>
+        <td>DifferentIndividuals(a b)</td>
+        <td>Individual:&nbsp;a<br />DifferentFrom:&nbsp;b</td>
+        <td>Not supported (To be implemented in a future version)</td>
+    </tr>
+    <tr>
+    <th colspan="5">TBox (terminological axioms)</th>
+    </tr>
+     <tr>
+        <td>concept inclusion</td>
+        <td>C⊑D</td>
+        <td>SubClassOf(C D)</td>
+        <td>Class:&nbsp;C<br />SubClassOf:&nbsp;D</td>
+        <td>brain.subClassOf("C",&nbsp;"D");</td>
+    </tr>
+     <tr>
+        <td>concept equivalence</td>
+        <td>C≡D</td>
+        <td>EquivalentClasses(C D)</td>
+        <td>Class:&nbsp;C<br />EquivalentTo:&nbsp;D</td>
+        <td>brain.equivalentClasses("C",&nbsp;"D");</td>
+    </tr>
+     <tr>
+        <td>concept disjointness</td>
+        <td>C⊓D⊑⊥</td>
+        <td>DisjointClasses(C D)</td>
+        <td>Class:&nbsp;C<br />DisjointWith:&nbsp;D</td>
+        <td>brain.disjointClasses("C",&nbsp;"D");</td>
+    </tr>
+    <tr>
+    <th colspan="5">RBox (relational axioms)</th>
+    </tr>
+     <tr>
+        <td>role inclusion</td>
+        <td>R⊑S</td>
+        <td>SubObjectPropertyOf(R&nbsp;S)</td>
+        <td>ObjectProperty:&nbsp;R<br />SubPropertyOf:&nbsp;S</td>
+        <td>brain.subPropertyOf("R",&nbsp;"S");</td>
+    </tr>
+     <tr>
+        <td>role equivalence</td>
+        <td>R≡S</td>
+        <td>EquivalentObjectProperties(C&nbsp;D)</td>
+        <td>ObjectProperty:&nbsp;R<br />EquivalentTo:&nbsp;S</td>
+        <td>brain.equivalentProperties("R",&nbsp;"S");</td>
+    </tr>
+     <tr>
+        <td>complex role inclusion</td>
+        <td>R1◦R2⊑S</td>
+        <td>EquivalentObjectProperties(C&nbsp;D)</td>
+        <td>ObjectProperty:&nbsp;S<br />SubPropertyChain:&nbsp;R1&nbsp;o&nbsp;R2</td>
+        <td>brain.chain("R1 o R2",&nbsp;"S");</td>
+    </tr>
+     <tr>
+        <td>role transitivity</td>
+        <td>R◦R⊑R</td>
+        <td>TransitiveObjectProperty(R)</td>
+        <td>ObjectProperty:&nbsp;R<br />Characteristics:&nbsp;Transitive</td>
+        <td>brain.transitive("R");</td>
+    </tr>
+</table>
+
+</div>
+
+        <footer>
+          Brain is maintained by <a href="https://github.com/loopasam">loopasam</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+                  <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-17382954-7");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+      
+    </div>
+  </body>
+</html>
